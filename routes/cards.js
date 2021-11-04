@@ -31,6 +31,25 @@ router.post("/", async (req, res) => {
   }
 });
 
+//update a card
+router.put("/:cardId", findCard, async (req, res) => {
+  let card = res.card
+  try{
+   
+      card.front =req.body.front || card.front
+      card.back =req.body.back || card.back
+      card.tags = req.body.tags || card.tags
+      card.isActive =req.body.isActive || card.isActive
+      card.isCorrect = req.body.isCorrect || card.isCorrect
+      card.timesSeen = req.body.timesSeen || card.timesSeen
+  
+   const updatedCard  = await res.card.save()
+res.json(updatedCard)
+  }catch(error){
+      res.status(400).json({message:error.message})
+  }
+});
+
 //delete a card by Id
 router.delete("/:cardId", findCard, async (req, res) => {
   try {
