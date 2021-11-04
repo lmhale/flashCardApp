@@ -9,10 +9,19 @@ router.get("/:userId", getUser, (req, res) => {
     res.json(res.user.cards);
   });
 
-  // get a specific card by Id
-//   router.get("/:userId/:cardId", getUser, (req,res) => {
-//       let user = res.user
-//       let card = user.findOne(req.params.cardId)
-//       res.json(user)
-//   })
+  //get a specific card by Id
+  
+  router.get("/:userId/:cardId", getUser, (req,res) => {
+   
+  
+       let cards = res.user.cards
+       let singleCard = cards.find(card => card.id === req.params.cardId )
+         console.log(singleCard)
+         if(singleCard === undefined){
+            res.send("that card doesn't exist")
+         }
+        res.json(singleCard)
+     
+     
+  })
 module.exports = router;
