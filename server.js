@@ -14,7 +14,10 @@ db.once('open', ()=> console.log('Connected to Database'))
 app.use(express.json())
 
 const usersRouter = require('./routes/users')
-app.use('/users', usersRouter)
+const cardsRouter = require('./routes/cards')
+
+app.use('/users', usersRouter.router)
+app.use('/cards', cardsRouter)
 
 const port = 3000;
 app.listen(port,() => console.log(`Server listening on port ${port}`));

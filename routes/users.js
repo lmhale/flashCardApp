@@ -12,13 +12,15 @@ router.get("/", async (req, res) => {
   }
 });
 //get one
-router.get("/:id", getUser, (req, res) => {
+router.get("/:userId", getUser, (req, res) => {
   res.json(res.user);
 });
 //create one
 router.post("/", async (req, res) => {
   const user = new User({
     name: req.body.name,
+    email: req.body.email,
+    cards: req.body.cards
   });
   try {
     const newUser = await user.save();
@@ -28,7 +30,7 @@ router.post("/", async (req, res) => {
   }
 });
 //update one
-router.patch("/:id", getUser, async (req, res) => {
+router.patch("/:userId", getUser, async (req, res) => {
     if(req.body.name != null){
         res.user.name = req.body.name
     }
@@ -40,7 +42,7 @@ res.json(updatedUser)
     }
 });
 //delete one
-router.delete("/:id", getUser, async (req, res) => {
+router.delete("/:userId", getUser, async (req, res) => {
   try {
     await res.user.remove();
     res.json({ message: "Deleted User" });
@@ -50,10 +52,10 @@ router.delete("/:id", getUser, async (req, res) => {
 });
 
 //middleware
-async function getUser(req, res, next) {
+ async function getUser(req, res, next) {
   let user;
   try {
-    user = await User.findById(req.params.id);
+    user = await User.findById(req.params.userId);
     if (user == null) {
       //exit function if user does not exist
       return res.status(404).json({ message: "Cannot Find User" });
@@ -65,4 +67,8 @@ async function getUser(req, res, next) {
   next();
 }
 
-module.exports = router;
+module.exports = {
+    router,
+    getUser
+}
+
