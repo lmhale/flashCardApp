@@ -19,8 +19,8 @@ router.get("/:userId", getUser, (req, res) => {
 router.post("/", async (req, res) => {
   const user = new User({
     name: req.body.name,
-    email: req.body.email,
-    cards: req.body.cards
+    email: req.body.email
+
   });
   try {
     const newUser = await user.save();

@@ -13,10 +13,10 @@ db.once('open', ()=> console.log('Connected to Database'))
 //lets our server accept json as a body
 app.use(express.json())
 
-const usersRouter = require('./routes/users')
+// const usersRouter = require('./routes/users')
 const cardsRouter = require('./routes/cards')
 
-app.use('/users', usersRouter.router)
+// app.use('/users', usersRouter.router)
 app.use('/cards', cardsRouter)
 
 const port = 3000;
