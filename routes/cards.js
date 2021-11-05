@@ -36,7 +36,7 @@ router.put("/:cardId", findCard, async (req, res) => {
   let card = res.card
   try{
    
-      card.front =req.body.front || card.front
+      card.front = req.body.front || card.front
       card.back =req.body.back || card.back
       card.tags = req.body.tags || card.tags
       card.isActive =req.body.isActive || card.isActive

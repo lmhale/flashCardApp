@@ -6,7 +6,6 @@ import { render } from "react-dom";
 
 
 render(
-
-<div>Hey there</div>,
+<div>Welcome to my Flashcard App</div>,
   document.getElementById("main")
 );

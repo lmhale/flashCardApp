@@ -9,6 +9,7 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
 
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
+//Adds a one time listener for the event
 db.once('open', ()=> console.log('Connected to Database'))
 
 //lets our server accept json as a body
@@ -26,4 +27,3 @@ app.get('*', (req, res) => {
 
 const port = 3000;
 app.listen(port,() => console.log(`Server listening on port ${port}`));
-// app.listen(3000, () => console.log('Server Started'))
